@@ -24,6 +24,8 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">create</property>
         
-        <mapping class="org.demo.hibernate.dto.UserDetails"/>
+        <!-- <mapping class="org.demo.hibernate.dto.UserDetails"/> -->
+        <mapping class="org.demo.hibernate.dto.UserDetails_OnetoOne"/>
+        <mapping class="org.demo.hibernate.dto.Vehicle"/>
     </session-factory>
 </hibernate-configuration>
