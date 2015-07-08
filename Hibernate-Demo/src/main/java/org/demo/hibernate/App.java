@@ -54,22 +54,16 @@ public class App
         user.setUserName("First User");
         user.getVehicle().add(vehicle);
         user.getVehicle().add(vehicle2);
-        vehicle.getUserList().add(user);
-        vehicle2.getUserList().add(user);
-        
-        UserDetails_OnetoOne user2 = new UserDetails_OnetoOne();
-        user2.setUserName("Second User");
-        user2.getVehicle().add(vehicle2);
-        vehicle2.getUserList().add(user2);
+        vehicle.setUser(user);
+        vehicle2.setUser(user);
         
 //      create session factory
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
-        session.save(user2);
-        session.save(vehicle);
-        session.save(vehicle2);
+//        session.save(vehicle);
+//        session.save(vehicle2);
         session.getTransaction().commit();
         session.close();
         

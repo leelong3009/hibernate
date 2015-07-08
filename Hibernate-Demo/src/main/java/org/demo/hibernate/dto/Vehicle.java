@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,14 +24,16 @@ public class Vehicle {
 	@Column(name="VEHICLE_NAME")
 	private String vehicleName;
 	
-	@ManyToMany
-	private Collection<UserDetails_OnetoOne> userList = new ArrayList<UserDetails_OnetoOne>();
+	@ManyToOne
+	@JoinColumn(name="userId")
+	private UserDetails_OnetoOne user;
 	
-	public Collection<UserDetails_OnetoOne> getUserList() {
-		return userList;
+	
+	public UserDetails_OnetoOne getUser() {
+		return user;
 	}
-	public void setUserList(Collection<UserDetails_OnetoOne> userList) {
-		this.userList = userList;
+	public void setUser(UserDetails_OnetoOne user) {
+		this.user = user;
 	}
 	public int getVehicleId() {
 		return vehicleId;
