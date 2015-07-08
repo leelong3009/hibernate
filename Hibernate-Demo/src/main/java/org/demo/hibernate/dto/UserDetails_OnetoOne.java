@@ -1,10 +1,19 @@
 package org.demo.hibernate.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,16 +26,15 @@ public class UserDetails_OnetoOne {
 	
 	private String userName;
 
-	@OneToOne
-	@JoinColumn(name="VEHICLE_ID")
-	private Vehicle vehicle;
-	
+	@ManyToMany(mappedBy="userList")
+	private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
-	public Vehicle getVehicle() {
+
+	public Collection<Vehicle> getVehicle() {
 		return vehicle;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
+	public void setVehicle(Collection<Vehicle> vehicle) {
 		this.vehicle = vehicle;
 	}
 
