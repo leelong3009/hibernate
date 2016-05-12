@@ -40,3 +40,10 @@ another, serially, rather than concurrently. Serializability may not be implemen
 
 * Pessimistic
 * 
+
+#JPA
+####Field access vs Property access
+* JPA allows for two types of access to the data of a persistent class. Field access which means that it maps the instance variables (fields) to columns in the database and Property access which means that is uses the getters to determine the property names that will be mapped to the db. What access type it will be used is decided by where you put the `@Id` annotation (on the id field or the getId() method).
+* I have developed a preference for field access mainly for two reasons. 
+ * First, because I frequently define getter methods that are not property accessors e.g. a getter that does not just return the value of a field but does a calculation and returns the result. In that case (and if you use property access) you have to annotate the getter with `@Transient`. If you forget to do this (as I did many times) you are looking for trouble. JPA will think that the getter corresponds to a property and funny things will happen.
+ * The second reason I prefer field access is that with property access you have to define getter methods for every field just for use by JPA even if your code will never call them.
